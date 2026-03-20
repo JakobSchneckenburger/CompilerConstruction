@@ -4,13 +4,17 @@
 	"name": "CompilerVM",
 	// If you are under ARM-based macs, change the image to
 	// skogsbaer/compiler-construction-wasm_linux-arm64:latest
+	// For x86 systems, use skogsbaer/compiler-construction-wasm_linux-amd64:latest
 	"image": "skogsbaer/compiler-construction-wasm_linux-amd64:latest",
 	"workspaceMount": "source=${localWorkspaceFolder},target=/cc,type=bind",
 	"workspaceFolder": "/cc",
 	"customizations": {
 		"vscode": {
 		"extensions": [
-			"ms-python.python"
+			"ms-python.python",
+			"ms-python.vscode-pylance",
+			"ms-python.debugpy",
+			"ms-python.vscode-python-envs"
 		],
 		"settings": {
 			"python.defaultInterpreterPath": "/usr/bin/python3",
