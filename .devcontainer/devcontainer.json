@@ -8,6 +8,7 @@
 	"image": "skogsbaer/compiler-construction-wasm_linux-amd64:latest",
 	"workspaceMount": "source=${localWorkspaceFolder},target=/cc,type=bind",
 	"workspaceFolder": "/cc",
+	"remoteUser": "ubuntu",
 	"customizations": {
 		"vscode": {
 		"extensions": [

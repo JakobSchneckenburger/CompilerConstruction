@@ -42,6 +42,11 @@ RUN useradd -m praktomat
 
 # We use a fresh tmpfs with /home in each container
 RUN chmod 1777 /home
+RUN chmod 1777 /tmp
+# Prepare path for devContainer
+RUN mkdir -p /tmp/user/1000 && \
+    chown -R ubuntu:ubuntu /tmp/user/1000 && \
+    chmod 700 /tmp/user/1000
 
 # Setup locale
 RUN locale-gen en_US.UTF-8
@@ -69,4 +74,6 @@ FROM base AS final
 RUN cd /cc-support/wasm-support && make native WAMR_ROOT_DIR=/cc-support/wasm-micro-runtime
 
 RUN mkdir /cc
+RUN chown -R ubuntu:ubuntu /cc
+RUN echo "Docker image built at $(date)" > /.image_info.txt
 WORKDIR /cc
