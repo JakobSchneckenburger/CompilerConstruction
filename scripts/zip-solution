@@ -2,5 +2,6 @@
 
 cd $(dirname $0)/..
 zip_file="CC_submission_$(date +'%Y-%m-%dT%H-%M-%S')_$(whoami).zip"
-find src -not -name '*.pyc' -not -name __pycache__ | xargs zip "$zip_file"
+#find src -not -name '*.pyc' -not -name __pycache__ | xargs zip "$zip_file"
+python3 -m zipfile -c "$zip_file" src/
 echo "Created zip file $zip_file"
