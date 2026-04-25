@@ -12,3 +12,4 @@ out.wat
 test.wat
 *.zip
 test.py
+testloop.py

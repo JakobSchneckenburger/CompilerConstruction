@@ -82,7 +82,7 @@ def compileExp(e: exp) -> list[WasmInstr]:
                     return compileExp(left) + compileExp(right) + [WasmInstrNumBinOp('i64', 'sub')]
                 case Mul():
                     return compileExp(left) + compileExp(right) + [WasmInstrNumBinOp('i64', 'mul')]  
-    
+
 
 def identToWasmId(ident: ident) -> WasmId:
     return WasmId(f'${ident.name}')
