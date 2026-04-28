@@ -1,0 +1,35 @@
+%import common (NEWLINE, WS_INLINE, SH_COMMENT, CNAME, INT)
+%ignore WS_INLINE
+%ignore SH_COMMENT
+
+// [a]  -----> 0 or 1 times a
+// [a]* -----> 0 or more times a
+
+lvar: NEWLINE* stmt_list
+
+stmt_list: (stmt NEWLINE)+
+
+stmt: assign_stmt 
+    | exp_stmt 
+
+
+exp_stmt: exp                           -> exp_stmt
+
+assign_stmt: CNAME "=" exp              -> assign_stmt
+
+//the order matters here
+exp_2: "-" exp_2                        -> exp_usub
+    | INT                               -> exp_int
+    | CNAME "(" (exp ("," exp)*)? ")"   -> exp_func_call
+    | CNAME                             -> exp_var
+    | "(" exp ")"                       -> exp_paren
+
+
+//copied from lecture
+exp_1: exp_1 "*" exp_2                  -> exp_mul
+    | exp_2                 
+exp: exp "+" exp_1                      -> exp_add
+    | exp "-" exp_1                     -> exp_sub
+    | exp_1
+
+
