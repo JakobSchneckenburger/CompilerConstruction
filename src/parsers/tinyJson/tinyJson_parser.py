@@ -27,15 +27,14 @@ def ruleEntryListNotEmpty(toks: TokenStream) -> dict[str, Json]:
         return {entry[0]: entry[1]}
 
 def ruleEntry(toks: TokenStream) -> tuple[str, Json]:
-    key = toks.ensureNext("STRING").value
+    key = toks.ensureNext("STRING").value[1:-1]
 
     toks.ensureNext("COLON")
     value = ruleJson(toks)
     return (key, value)
 
 def ruleString(toks: TokenStream) -> str:
-    
-    return toks.ensureNext("STRING").value
+    return toks.ensureNext("STRING").value[1:-1]
 
 def ruleInt(toks: TokenStream) -> int:
     return int(toks.ensureNext("INT").value)
