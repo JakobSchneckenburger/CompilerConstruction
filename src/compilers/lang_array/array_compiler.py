@@ -132,8 +132,6 @@ def compileExp(e: exp, cfg: CompilerConfig) -> list[WasmInstr]:
                 case Not():
                     return (compileExp(arg, cfg) + [WasmInstrConst('i32', 0)] + [WasmInstrIntRelOp('i32', 'eq')])
         case BinOp(left, op, right):
-            instrs = compileExp(left, cfg)
-            instrs += compileExp(right, cfg)
             match op:
                 case Add():
                     return compileExp(left, cfg) + compileExp(right, cfg) + [WasmInstrNumBinOp('i64', 'add')]
